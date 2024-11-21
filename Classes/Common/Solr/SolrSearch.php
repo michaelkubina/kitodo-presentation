@@ -510,6 +510,11 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
                             continue;
                         }
                         if (!empty($doc['page'])) {
+                            $metadataToplevel = $this->fetchToplevelMetadataFromSolr([
+                                'query' => 'toplevel:1 AND uid:' . $doc['uid'],
+                                'start' => 0,
+                                'rows' => 1,
+                            ]);
                             // it's probably a fulltext or metadata search
                             $searchResult = [];
                             $searchResult['page'] = $doc['page'];
@@ -521,6 +526,7 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
                                     $searchResult['metadata'][$indexName] = $doc['metadata'][$indexName];
                                 }
                             }
+                            $documents[$doc['uid']]['metadata'] = $metadataToplevel[$doc['uid']];
                             if ($this->searchParams['fulltext'] == '1') {
                                 $searchResult['snippet'] = $doc['snippet'];
                                 $searchResult['highlight'] = $doc['highlight'];

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2021-11-09T21:57:06Z">
-		<header>
-			<generator>LFEditor</generator>
-		</header>
 		<body>
 			<trans-unit id="flexform.collections" approved="yes">
 				<source><![CDATA[Collections]]></source>
@@ -301,6 +298,22 @@
 				<source><![CDATA[How many pages should be skipped by "fast-forward" and "rewind" buttons?]]></source>
 				<target><![CDATA[Wieviele Seiten sollen mit den Schnellblätter-Tasten übersprungen werden?]]></target>
 			</trans-unit>
+			<trans-unit id="plugins.navigation.flexform.features.measureForward">
+				<source><![CDATA[One measure forward]]></source>
+				<target><![CDATA[Ein Takt vor]]></target>
+			</trans-unit>
+			<trans-unit id="plugins.navigation.flexform.features.measureBack">
+				<source><![CDATA[One measureBack back]]></source>
+				<target><![CDATA[Ein Takt zurück]]></target>
+			</trans-unit>
+			<trans-unit id="plugins.navigation.flexform.features.documentBack" approved="yes">
+				<source><![CDATA[Show previous document]]></source>
+				<target><![CDATA[Ein Dokument zurück]]></target>
+			</trans-unit>
+			<trans-unit id="plugins.navigation.flexform.features.documentForward" approved="yes">
+				<source><![CDATA[Show next document]]></source>
+				<target><![CDATA[Ein Dokument vor]]></target>
+			</trans-unit>
 			<trans-unit id="plugins.navigation.title" approved="yes">
 				<source><![CDATA[Kitodo: Navigation]]></source>
 				<target><![CDATA[Kitodo: Navigation]]></target>
@@ -442,9 +455,9 @@
 				<target><![CDATA[Volltextsuche vorauswählen?]]></target>
 			</trans-unit>
 			<trans-unit id="plugins.search.flexform.datesearch" approved="yes">
-                <source><![CDATA[Enable date search?]]></source>
-                <target><![CDATA[Datumssuche aktivieren?]]></target>
-            </trans-unit>
+				<source><![CDATA[Enable date search?]]></source>
+				<target><![CDATA[Datumssuche aktivieren?]]></target>
+			</trans-unit>
 			<trans-unit id="plugins.search.flexform.searchIn" approved="yes">
 				<source><![CDATA[Restrict search to current document or collection?]]></source>
 				<target><![CDATA[Suche auf aktuelle/s Kollektion/Dokument einschränken?]]></target>
@@ -533,162 +546,165 @@
 				<source><![CDATA[Yes]]></source>
 				<target><![CDATA[Ja]]></target>
 			</trans-unit>
-            <trans-unit id="flash.attention" approved="yes">
-                <source><![CDATA[Attention!]]></source>
-                <target><![CDATA[Achtung!]]></target>
-            </trans-unit>
-            <trans-unit id="flash.done" approved="yes">
-                <source><![CDATA[Done!]]></source>
-                <target><![CDATA[Fertig!]]></target>
-            </trans-unit>
-            <trans-unit id="flash.warning" approved="yes">
-                <source><![CDATA[Warning!]]></source>
-                <target><![CDATA[Warnung!]]></target>
-            </trans-unit>
-            <trans-unit id="flash.error" approved="yes">
-                <source><![CDATA[Error!]]></source>
-                <target><![CDATA[Fehler!]]></target>
-            </trans-unit>
-            <trans-unit id="flash.coreStatus" approved="yes">
-                <source><![CDATA[Start Time: %s<br />Uptime: %s<br />Last Modified: %ss<br />Number of Documents: %u]]></source>
-                <target><![CDATA[Startzeit: %s<br />Laufzeit: %s<br />Letzte Änderung: %s<br />Anzahl Dokumente: %u]]></target>
-            </trans-unit>
-            <trans-unit id="flash.days" approved="yes">
-                <source><![CDATA[days]]></source>
-                <target><![CDATA[Tage]]></target>
-            </trans-unit>
-            <trans-unit id="flash.running" approved="yes">
-                <source><![CDATA[Please wait...]]></source>
-                <target><![CDATA[Indexierung läuft...]]></target>
-            </trans-unit>
-            <trans-unit id="flash.newCollection" approved="yes">
-                <source><![CDATA[New collection "%s" [%u] added to database.]]></source>
-                <target><![CDATA[Neue Sammlung "%s" [%u] zur Datenbank hinzugefügt.]]></target>
-            </trans-unit>
-            <trans-unit id="flash.newLibrary" approved="yes">
-                <source><![CDATA[New library "%s" [%u] added to database.]]></source>
-                <target><![CDATA[Neue Bibliothek "%s" [%u] zur Datenbank hinzugefügt.]]></target>
-            </trans-unit>
-            <trans-unit id="flash.documentSaved" approved="yes">
-                <source><![CDATA[Document "%s" [%u] saved.]]></source>
-                <target><![CDATA[Dokument "%s" [%u] gespeichert.]]></target>
-            </trans-unit>
-            <trans-unit id="flash.documentIndexed" approved="yes">
-                <source><![CDATA[Document "%s" [%u] indexed.]]></source>
-                <target><![CDATA[Dokument "%s" [%u] indexiert.]]></target>
-            </trans-unit>
-            <trans-unit id="flash.documentNotIndexed" approved="yes">
-                <source><![CDATA[Document "%s" [%u] could not be indexed.]]></source>
-                <target><![CDATA[Dokument "%s" [%u] konnte nicht indexiert werden.]]></target>
-            </trans-unit>
-            <trans-unit id="flash.documentsToGo" approved="yes">
-                <source><![CDATA[%u documents to go.]]></source>
-                <target><![CDATA[Verbleibende Dokumente zur Indexierung: %u]]></target>
-            </trans-unit>
-            <trans-unit id="flash.fileNotLoaded" approved="yes">
-                <source><![CDATA[File "%s" could not be loaded.]]></source>
-                <target><![CDATA[Datei "%s" konnte nicht eingelesen werden.]]></target>
-            </trans-unit>
-            <trans-unit id="flash.solrException" approved="yes">
-                <source><![CDATA[Apache Solr exception thrown:]]></source>
-                <target><![CDATA[Apache Solr meldet Ausnahmefehler:]]></target>
-            </trans-unit>
-            <trans-unit id="flash.solrNoConnection" approved="yes">
-                <source><![CDATA[Could not connect to Apache Solr server.]]></source>
-                <target><![CDATA[Verbindung zu Apache Solr Server konnte nicht hergestellt werden.]]></target>
-            </trans-unit>
-            <trans-unit id="flash.seeLog" approved="yes">
-                <source><![CDATA[See administration log for more details.]]></source>
-                <target><![CDATA[Alle Details des Indexierungslaufs stehen im Administrationsprotokoll.]]></target>
-            </trans-unit>
-            <trans-unit id="flash.editInProductionWarning" approved="yes">
-                <source><![CDATA[Changing this most likely requires re-indexing all documents.]]></source>
-                <target><![CDATA[Eine Änderung erfordert höchstwahrscheinlich die Re-Indexierung aller Dokumente.]]></target>
-            </trans-unit>
-            <trans-unit id="update.metadataConfig" approved="yes">
-                <source><![CDATA[Updating metadata configuration...]]></source>
-                <target><![CDATA[Aktualisierung der Metadatenkonfiguration...]]></target>
-            </trans-unit>
-            <trans-unit id="update.metadataConfigOkay" approved="yes">
-                <source><![CDATA[...successfully completed!]]></source>
-                <target><![CDATA[...erfolgreich beendet! Alle Datensätze wurden ins IRRE-Schema konvertiert.]]></target>
-            </trans-unit>
-            <trans-unit id="update.metadataConfigNotOkay" approved="yes">
-                <source><![CDATA[...incomplete! Please check your configuration manually.]]></source>
-                <target><![CDATA[...abgebrochen! Die Überführung der Datensätze ins IRRE-Schema muss manuell erfolgen.]]></target>
-            </trans-unit>
-            <trans-unit id="update.copyIndexRelatedColumns" approved="yes">
-                <source><![CDATA[Copy index related columns...]]></source>
-                <target><![CDATA[Kopieren der Index bezogenen Tabellenspalten...]]></target>
-            </trans-unit>
-            <trans-unit id="update.copyIndexRelatedColumnsOkay" approved="yes">
-                <source><![CDATA[...successfully completed!]]></source>
-                <target><![CDATA[...erfolgreich beendet! Tabellen wurden erfolgreich kopiert.]]></target>
-            </trans-unit>
-            <trans-unit id="update.copyIndexRelatedColumnsNotOkay" approved="yes">
-                <source><![CDATA[...incomplete! The index related columns (tokenized, stored, indexed, boost, autocomplete) of table tx_dlf_metadata have to be copied manually.]]></source>
-                <target><![CDATA[...abgebrochen! Das Kopieren der Index bezogenen Tabellenspalten (tokenized, stored, indexed, boost, autocomplete) der Tabelle tx_dlf_metadata muss manuell erfolgen.]]></target>
-            </trans-unit>
-            <trans-unit id="update.solariumSolrUpdate" approved="yes">
-                <source><![CDATA[Re-adding cores to Solr...]]></source>
-                <target><![CDATA[Hinzufügen der Solr Kerne...]]></target>
-            </trans-unit>
-            <trans-unit id="update.solariumSolrUpdateOkay" approved="yes">
-                <source><![CDATA[...successfully completed! Please re-index your documents now.]]></source>
-                <target><![CDATA[...erfolgreich beendet! Bitte re-indexieren Sie jetzt alle Dokumente.]]></target>
-            </trans-unit>
-            <trans-unit id="update.solariumSolrUpdateNotOkay" approved="yes">
-                <source><![CDATA[...failed for core %s! Please check your Solr configuration.]]></source>
-                <target><![CDATA[...für Kern %s fehlgeschlagen! Bitte überprüfen Sie die Solr-Konfiguration.]]></target>
-            </trans-unit>
-            <trans-unit id="update.FormatClasses" approved="yes">
-                <source><![CDATA[Switching format classes to namespaces...]]></source>
-                <target><![CDATA[Format-Klassen auf Namensräume umstellen...]]></target>
-            </trans-unit>
-            <trans-unit id="update.FormatClassesOkay" approved="yes">
-                <source><![CDATA[...successfully completed! Please check all format records in the page tree's root.]]></source>
-                <target><![CDATA[...erfolgreich beendet! Bitte prüfen Sie dennoch alle Formateinträge im Wurzelknoten des Seitenbaums.]]></target>
-            </trans-unit>
-            <trans-unit id="update.documentAddFormat" approved="yes">
-                <source><![CDATA[Add document format column...]]></source>
-                <target><![CDATA[Füge Format-Spalte zu Dokument-Tabelle hinzu...]]></target>
-            </trans-unit>
-            <trans-unit id="update.documentAddFormatOkay" approved="yes">
-                <source><![CDATA[...successfully completed!]]></source>
-                <target><![CDATA[...erfolgreich beendet!]]></target>
-            </trans-unit>
-            <trans-unit id="update.documentAddFormatNotOkay" approved="yes">
-                <source><![CDATA[...incomplete! Please add column document_format for table tx_dlf_document manually.]]></source>
-                <target><![CDATA[...abgebrochen! Bitte fügen Sie die Spalte document_format manuell zur Tabelle table tx_dlf_document hinzu.]]></target>
-            </trans-unit>
-            <trans-unit id="update.documentSetFormatForOldEntries" approved="yes">
-                <source><![CDATA[Set document format for existing entries to 'METS'...]]></source>
-                <target><![CDATA[Setze das Format für bestehende Dokumente auf 'METS'...]]></target>
-            </trans-unit>
-            <trans-unit id="update.documentSetFormatForOldEntriesOkay" approved="yes">
-                <source><![CDATA[...successfully completed!]]></source>
-                <target><![CDATA[...erfolgreich beendet!]]></target>
-            </trans-unit>
-            <trans-unit id="update.documentSetFormatForOldEntriesNotOkay" approved="yes">
-                <source><![CDATA[...incomplete! Please set missing tx_dlf_document.document_format values to 'METS'.]]></source>
-                <target><![CDATA[...abgebrochen! Bitte in der Tabelle tx_dlf_document.document_format 'METS'.]]></target>
-            </trans-unit>
-            <trans-unit id="solr.connected" approved="yes">
-                <source><![CDATA[Connection established!]]></source>
-                <target><![CDATA[Verbindung hergestellt!]]></target>
-            </trans-unit>
-            <trans-unit id="solr.status" approved="yes">
-                <source><![CDATA[Apache Solr is running and taking requests.]]></source>
-                <target><![CDATA[Apache Solr ist verfügbar und nimmt Anfragen entgegen.]]></target>
-            </trans-unit>
-            <trans-unit id="solr.notConnected" approved="yes">
-                <source><![CDATA[Connection failed!]]></source>
-                <target><![CDATA[Verbindung fehlgeschlagen!]]></target>
-            </trans-unit>
-            <trans-unit id="solr.error" approved="yes">
-                <source><![CDATA[Apache Solr not reachable with given configuration.]]></source>
-                <target><![CDATA[Apache Solr ist mit der gegebenen Konfiguration nicht erreichbar.]]></target>
-            </trans-unit>
+			<trans-unit id="flash.attention" approved="yes">
+				<source><![CDATA[Attention!]]></source>
+				<target><![CDATA[Achtung!]]></target>
+			</trans-unit>
+			<trans-unit id="flash.done" approved="yes">
+				<source><![CDATA[Done!]]></source>
+				<target><![CDATA[Fertig!]]></target>
+			</trans-unit>
+			<trans-unit id="flash.warning" approved="yes">
+				<source><![CDATA[Warning!]]></source>
+				<target><![CDATA[Warnung!]]></target>
+			</trans-unit>
+			<trans-unit id="flash.error" approved="yes">
+				<source><![CDATA[Error!]]></source>
+				<target><![CDATA[Fehler!]]></target>
+			</trans-unit>
+			<trans-unit id="flash.coreStatus" approved="yes">
+				<source><![CDATA[Start Time: %s<br />Uptime: %s<br />Last Modified: %ss<br />Number of Documents: %u]]></source>
+				<target><![CDATA[Startzeit: %s<br />Laufzeit: %s<br />Letzte Änderung: %s<br />Anzahl Dokumente: %u]]></target>
+			</trans-unit>
+			<trans-unit id="flash.days" approved="yes">
+				<source><![CDATA[days]]></source>
+				<target><![CDATA[Tage]]></target>
+			</trans-unit>
+			<trans-unit id="flash.running" approved="yes">
+				<source><![CDATA[Please wait...]]></source>
+				<target><![CDATA[Indexierung läuft...]]></target>
+			</trans-unit>
+			<trans-unit id="flash.newCollection" approved="yes">
+				<source><![CDATA[New collection "%s" [%u] added to database.]]></source>
+				<target><![CDATA[Neue Sammlung "%s" [%u] zur Datenbank hinzugefügt.]]></target>
+			</trans-unit>
+			<trans-unit id="flash.newLibrary" approved="yes">
+				<source><![CDATA[New library "%s" [%u] added to database.]]></source>
+				<target><![CDATA[Neue Bibliothek "%s" [%u] zur Datenbank hinzugefügt.]]></target>
+			</trans-unit>
+			<trans-unit id="flash.documentSaved" approved="yes">
+				<source><![CDATA[Document "%s" [%u] saved.]]></source>
+				<target><![CDATA[Dokument "%s" [%u] gespeichert.]]></target>
+			</trans-unit>
+			<trans-unit id="flash.documentIndexed" approved="yes">
+				<source><![CDATA[Document "%s" [%u] indexed.]]></source>
+				<target><![CDATA[Dokument "%s" [%u] indexiert.]]></target>
+			</trans-unit>
+			<trans-unit id="flash.documentNotIndexed" approved="yes">
+				<source><![CDATA[Document "%s" [%u] could not be indexed.]]></source>
+				<target><![CDATA[Dokument "%s" [%u] konnte nicht indexiert werden.]]></target>
+			</trans-unit>
+			<trans-unit id="flash.documentsToGo" approved="yes">
+				<source><![CDATA[%u documents to go.]]></source>
+				<target><![CDATA[Verbleibende Dokumente zur Indexierung: %u]]></target>
+			</trans-unit>
+			<trans-unit id="flash.fileNotLoaded" approved="yes">
+				<source><![CDATA[File "%s" could not be loaded.]]></source>
+				<target><![CDATA[Datei "%s" konnte nicht eingelesen werden.]]></target>
+			</trans-unit>
+			<trans-unit id="flash.solrException" approved="yes">
+				<source><![CDATA[Apache Solr exception thrown:]]></source>
+				<target><![CDATA[Apache Solr meldet Ausnahmefehler:]]></target>
+			</trans-unit>
+			<trans-unit id="flash.solrNoConnection" approved="yes">
+				<source><![CDATA[Could not connect to Apache Solr server.]]></source>
+				<target><![CDATA[Verbindung zu Apache Solr Server konnte nicht hergestellt werden.]]></target>
+			</trans-unit>
+			<trans-unit id="flash.seeLog" approved="yes">
+				<source><![CDATA[See administration log for more details.]]></source>
+				<target><![CDATA[Alle Details des Indexierungslaufs stehen im Administrationsprotokoll.]]></target>
+			</trans-unit>
+			<trans-unit id="flash.editInProductionWarning" approved="yes">
+				<source><![CDATA[Changing this most likely requires re-indexing all documents.]]></source>
+				<target><![CDATA[Eine Änderung erfordert höchstwahrscheinlich die Re-Indexierung aller Dokumente.]]></target>
+			</trans-unit>
+			<trans-unit id="update.metadataConfig" approved="yes">
+				<source><![CDATA[Updating metadata configuration...]]></source>
+				<target><![CDATA[Aktualisierung der Metadatenkonfiguration...]]></target>
+			</trans-unit>
+			<trans-unit id="update.metadataConfigOkay" approved="yes">
+				<source><![CDATA[...successfully completed!]]></source>
+				<target><![CDATA[...erfolgreich beendet! Alle Datensätze wurden ins IRRE-Schema konvertiert.]]></target>
+			</trans-unit>
+			<trans-unit id="update.metadataConfigNotOkay" approved="yes">
+				<source><![CDATA[...incomplete! Please check your configuration manually.]]></source>
+				<target><![CDATA[...abgebrochen! Die Überführung der Datensätze ins IRRE-Schema muss manuell erfolgen.]]></target>
+			</trans-unit>
+			<trans-unit id="update.copyIndexRelatedColumns" approved="yes">
+				<source><![CDATA[Copy index related columns...]]></source>
+				<target><![CDATA[Kopieren der Index bezogenen Tabellenspalten...]]></target>
+			</trans-unit>
+			<trans-unit id="update.copyIndexRelatedColumnsOkay" approved="yes">
+				<source><![CDATA[...successfully completed!]]></source>
+				<target><![CDATA[...erfolgreich beendet! Tabellen wurden erfolgreich kopiert.]]></target>
+			</trans-unit>
+			<trans-unit id="update.copyIndexRelatedColumnsNotOkay" approved="yes">
+				<source><![CDATA[...incomplete! The index related columns (tokenized, stored, indexed, boost, autocomplete) of table tx_dlf_metadata have to be copied manually.]]></source>
+				<target><![CDATA[...abgebrochen! Das Kopieren der Index bezogenen Tabellenspalten (tokenized, stored, indexed, boost, autocomplete) der Tabelle tx_dlf_metadata muss manuell erfolgen.]]></target>
+			</trans-unit>
+			<trans-unit id="update.solariumSolrUpdate" approved="yes">
+				<source><![CDATA[Re-adding cores to Solr...]]></source>
+				<target><![CDATA[Hinzufügen der Solr Kerne...]]></target>
+			</trans-unit>
+			<trans-unit id="update.solariumSolrUpdateOkay" approved="yes">
+				<source><![CDATA[...successfully completed! Please re-index your documents now.]]></source>
+				<target><![CDATA[...erfolgreich beendet! Bitte re-indexieren Sie jetzt alle Dokumente.]]></target>
+			</trans-unit>
+			<trans-unit id="update.solariumSolrUpdateNotOkay" approved="yes">
+				<source><![CDATA[...failed for core %s! Please check your Solr configuration.]]></source>
+				<target><![CDATA[...für Kern %s fehlgeschlagen! Bitte überprüfen Sie die Solr-Konfiguration.]]></target>
+			</trans-unit>
+			<trans-unit id="update.FormatClasses" approved="yes">
+				<source><![CDATA[Switching format classes to namespaces...]]></source>
+				<target><![CDATA[Format-Klassen auf Namensräume umstellen...]]></target>
+			</trans-unit>
+			<trans-unit id="update.FormatClassesOkay" approved="yes">
+				<source><![CDATA[...successfully completed! Please check all format records in the page tree's root.]]></source>
+				<target><![CDATA[...erfolgreich beendet! Bitte prüfen Sie dennoch alle Formateinträge im Wurzelknoten des Seitenbaums.]]></target>
+			</trans-unit>
+			<trans-unit id="update.documentAddFormat" approved="yes">
+				<source><![CDATA[Add document format column...]]></source>
+				<target><![CDATA[Füge Format-Spalte zu Dokument-Tabelle hinzu...]]></target>
+			</trans-unit>
+			<trans-unit id="update.documentAddFormatOkay" approved="yes">
+				<source><![CDATA[...successfully completed!]]></source>
+				<target><![CDATA[...erfolgreich beendet!]]></target>
+			</trans-unit>
+			<trans-unit id="update.documentAddFormatNotOkay" approved="yes">
+				<source><![CDATA[...incomplete! Please add column document_format for table tx_dlf_document manually.]]></source>
+				<target><![CDATA[...abgebrochen! Bitte fügen Sie die Spalte document_format manuell zur Tabelle table tx_dlf_document hinzu.]]></target>
+			</trans-unit>
+			<trans-unit id="update.documentSetFormatForOldEntries" approved="yes">
+				<source><![CDATA[Set document format for existing entries to 'METS'...]]></source>
+				<target><![CDATA[Setze das Format für bestehende Dokumente auf 'METS'...]]></target>
+			</trans-unit>
+			<trans-unit id="update.documentSetFormatForOldEntriesOkay" approved="yes">
+				<source><![CDATA[...successfully completed!]]></source>
+				<target><![CDATA[...erfolgreich beendet!]]></target>
+			</trans-unit>
+			<trans-unit id="update.documentSetFormatForOldEntriesNotOkay" approved="yes">
+				<source><![CDATA[...incomplete! Please set missing tx_dlf_document.document_format values to 'METS'.]]></source>
+				<target><![CDATA[...abgebrochen! Bitte in der Tabelle tx_dlf_document.document_format 'METS'.]]></target>
+			</trans-unit>
+			<trans-unit id="solr.connected" approved="yes">
+				<source><![CDATA[Connection established!]]></source>
+				<target><![CDATA[Verbindung hergestellt!]]></target>
+			</trans-unit>
+			<trans-unit id="solr.status" approved="yes">
+				<source><![CDATA[Apache Solr is running and taking requests.]]></source>
+				<target><![CDATA[Apache Solr ist verfügbar und nimmt Anfragen entgegen.]]></target>
+			</trans-unit>
+			<trans-unit id="solr.notConnected" approved="yes">
+				<source><![CDATA[Connection failed!]]></source>
+				<target><![CDATA[Verbindung fehlgeschlagen!]]></target>
+			</trans-unit>
+			<trans-unit id="solr.error" approved="yes">
+				<source><![CDATA[Apache Solr not reachable with given configuration.]]></source>
+				<target><![CDATA[Apache Solr ist mit der gegebenen Konfiguration nicht erreichbar.]]></target>
+			</trans-unit>
 		</body>
+		<header>
+			<generator>LFEditor</generator>
+		</header>
 	</file>
 </xliff>

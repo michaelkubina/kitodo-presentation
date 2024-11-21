@@ -235,4 +235,97 @@
         </a>
     </div>
 </f:section>
+
+<f:section name="render.measureBack">
+    <f:if condition="{numMeasures} > 0">
+        <f:then>
+            <div class="measureBacks" style="top: 100px;">
+                <span class="prev">
+                    <f:if condition="{currentMeasure} > 1">
+                        <f:then>
+                            <f:variable name="prevMeasure" value="{currentMeasure - 1}" />
+                            <f:link.action addQueryString="1" additionalParams="{'tx_dlf[measure]':'{currentMeasure - 1}', 'tx_dlf[page]':'{measurePages.{prevMeasure}}'}">
+                                <f:translate key="prevMeasure"/>
+                            </f:link.action>
+                        </f:then>
+                        <f:else>
+                            <span title="{f:translate(key: 'prevPage')}">
+                                <f:translate key="prevMeasure"/>
+                            </span>
+                        </f:else>
+                    </f:if>
+                </span>
+            </div>
+        </f:then>
+    </f:if>
+</f:section>
+
+<f:section name="render.measureForward">
+    <f:if condition="{numMeasures} > 0">
+        <f:then>
+            <div class="measureFwds" style="top: 200px;">
+                <span class="next">
+                    <f:if condition="{currentMeasure} < {numMeasures}">
+                        <f:then>
+                            <f:if condition="{currentMeasure} > 0">
+                                <f:then>
+                                    <f:variable name="nextMeasure" value="{currentMeasure + 1}" />
+                                    <f:link.action addQueryString="1" additionalParams="{'tx_dlf[measure]':'{currentMeasure + 1}', 'tx_dlf[page]':'{measurePages.{nextMeasure}}'}">
+                                        <f:translate key="nextMeasure"/>
+                                    </f:link.action>
+                                </f:then>
+                                <f:else>
+                                    <f:link.action
+                                        addQueryString="1" additionalParams="{'tx_dlf[measure]':'1', 'tx_dlf[page]':'{measurePages.1}'}">
+                                        <f:translate key="nextMeasure"/>
+                                    </f:link.action>
+                                </f:else>
+                            </f:if>
+                        </f:then>
+                        <f:else>
+                            <span title="{f:translate(key: 'nextMeasure')}">
+                                <f:translate key="nextMeasure"/>
+                            </span>
+                        </f:else>
+                    </f:if>
+                </span>
+            </div>
+        </f:then>
+    </f:if>
+</f:section>
+
+<f:section name="render.documentBack">
+    <div class="tx-dlf-navigation-documentBack">
+        <f:if condition="{documentBack}">
+            <f:then>
+                <f:link.action addQueryString="1" addQueryStringMethod="GET" additionalParams="{'tx_dlf[page]':'1', 'tx_dlf[id]': '{documentBack}'}" title="{f:translate(key: 'navigation.documentBack')}">
+                    <f:translate key="navigation.documentBack"/>
+                </f:link.action>
+            </f:then>
+            <f:else>
+                <span title="{f:translate(key: 'navigation.documentBack')}">
+                    <f:translate key="navigation.documentBack"/>
+                </span>
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
+
+<f:section name="render.documentForward">
+    <div class="tx-dlf-navigation-documentForward">
+        <f:if condition="{documentForward}">
+            <f:then>
+                <f:link.action addQueryString="1" addQueryStringMethod="GET" additionalParams="{'tx_dlf[page]':'1', 'tx_dlf[id]': '{documentForward}'}" title="{f:translate(key: 'navigation.documentForward')}">
+                    <f:translate key="navigation.documentForward"/>
+                </f:link.action>
+            </f:then>
+            <f:else>
+                <span title="{f:translate(key: 'navigation.documentForward')}">
+                    <f:translate key="navigation.documentForward"/>
+                </span>
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
+
 </html>

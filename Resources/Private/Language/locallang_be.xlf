@@ -206,6 +206,18 @@
 			<trans-unit id="plugins.navigation.flexform.features.listView">
 				<source><![CDATA[Link to page with listview plugin]]></source>
 			</trans-unit>
+			<trans-unit id="plugins.navigation.flexform.features.measureForward">
+				<source><![CDATA[One measure forward]]></source>
+			</trans-unit>
+			<trans-unit id="plugins.navigation.flexform.features.measureBack">
+				<source><![CDATA[One measureBack back]]></source>
+			</trans-unit>
+			<trans-unit id="plugins.navigation.flexform.features.documentBack">
+				<source><![CDATA[Show previous document]]></source>
+			</trans-unit>
+			<trans-unit id="plugins.navigation.flexform.features.documentForward">
+				<source><![CDATA[Show next document]]></source>
+			</trans-unit>
 			<trans-unit id="plugins.navigation.title">
 				<source><![CDATA[Kitodo: Navigation]]></source>
 			</trans-unit>

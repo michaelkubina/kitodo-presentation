@@ -52,6 +52,10 @@ class ToolboxController extends AbstractController
         }
 
         $this->renderTools();
+
+        $pageArguments = $this->request->getAttribute('routing');
+        $this->viewData['pageUid'] = $pageArguments->getPageId();
+
         $this->view->assign('viewData', $this->viewData);
     }
 

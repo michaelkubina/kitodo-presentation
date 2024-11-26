@@ -229,10 +229,7 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
 
             // get title of parent/grandparent/... if empty
             if (empty($document['title']) && $document['partOf'] > 0) {
-                $superiorTitle = AbstractDocument::getTitle($document['partOf'], true);
-                if (!empty($superiorTitle)) {
-                    $document['title'] = '[' . $superiorTitle . ']';
-                }
+                $document['title'] = $this->getTitleFromPartOf($document['partOf']);
             }
         }
 
@@ -503,6 +500,10 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
                     $documents[$doc['uid']] = $allDocuments[$doc['uid']];
                 }
                 if (isset($documents[$doc['uid']])) {
+                    // get title of parent/grandparent/... if empty
+                    if (empty($documents[$doc['uid']]['title']) && $documents[$doc['uid']]['partOf'] > 0) {
+                        $doc['title'] = $this->getTitleFromPartOf($documents[$doc['uid']]['partOf']);
+                    }
                     $this->translateLanguageCode($doc);
                     if ($doc['toplevel'] === false) {
                         // this maybe a chapter, article, ..., year
@@ -848,5 +849,15 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
                 $doc['metadata']['language'][$indexName] = Helper::getLanguageName($language);
             }
         }
+    }
+
+    private function getTitleFromPartOf($partOf): string
+    {
+        $title = '';
+        $superiorTitle = AbstractDocument::getTitle($partOf, true);
+        if (!empty($superiorTitle)) {
+            $title = '[' . $superiorTitle . ']';
+        }
+        return $title;
     }
 }

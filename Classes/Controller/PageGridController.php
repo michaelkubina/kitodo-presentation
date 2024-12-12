@@ -49,7 +49,7 @@ class PageGridController extends AbstractController
 
         // access cachemanager for pagegrid
         $cacheManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class);
-        $cache = $cacheManager->getCache('pagegrid_cache');
+        $cache = $cacheManager->getCache('tx_dlf_pagegrid');
         $cacheKey = $this->document->getCurrentDocument()->recordId;
         $cachedData = $cache->get($cacheKey);
 
@@ -64,7 +64,7 @@ class PageGridController extends AbstractController
                 $entryArray[] = $foundEntry;
             }
 
-            $cache->set($cacheKey, $entryArray, [], 84200);
+            $cache->set($cacheKey, $entryArray, [], 86400);
         }
         // mark currently active page
         $entryArray[$currentPage - 1]['state'] = 'cur';

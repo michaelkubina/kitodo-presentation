@@ -487,7 +487,7 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
         $params['listMetadataRecords'] = [];
 
         // Restrict the fields to the required ones.
-        $params['fields'] = 'uid,id,page,title,thumbnail,partof,toplevel,type';
+        $params['fields'] = 'uid,id,page,title,title_breadcrumbs,thumbnail,partof,toplevel,type,record_id';
 
         if ($this->listedMetadata) {
             foreach ($this->listedMetadata as $metadata) {
@@ -561,6 +561,8 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
                             $searchResult['thumbnail'] = $doc['thumbnail'];
                             $searchResult['structure'] = $doc['type'];
                             $searchResult['title'] = $doc['title'];
+                            $searchResult['title_breadcrumbs'] = $doc['title_breadcrumbs'][0];
+                            //$searchResult['raw'] = $doc;
                             foreach ($params['listMetadataRecords'] as $indexName => $solrField) {
                                 if (isset($doc['metadata'][$indexName])) {
                                     $searchResult['metadata'][$indexName] = $doc['metadata'][$indexName];
@@ -888,6 +890,7 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
             'snippet' => $resultDocument->getSnippets(),
             'thumbnail' => $resultDocument->getThumbnail(),
             'title' => $resultDocument->getTitle(),
+            'title_breadcrumbs' => $resultDocument->getTitleBreadcrumbs(),
             'toplevel' => $resultDocument->getToplevel(),
             'type' => $resultDocument->getType(),
             'uid' => !empty($resultDocument->getUid()) ? $resultDocument->getUid() : $parameters['uid'],

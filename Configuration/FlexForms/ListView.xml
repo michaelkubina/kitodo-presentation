@@ -65,6 +65,15 @@
                             <default>0</default>
                         </config>
                     </settings.getTitle>
+                    <settings.getTitleBreadcrumbs>
+                        <exclude>1</exclude>
+                        <label>TODO Use breadcrumbs as title</label>
+                        <description>When active this will show breadcrumbs along all parent structure titles as the documents title</description>
+                        <config>
+                            <type>check</type>
+                            <default>0</default>
+                        </config>
+                    </settings.getTitleBreadcrumbs>
                     <settings.basketButton>
                         <onChange>reload</onChange>
                         <exclude>1</exclude>

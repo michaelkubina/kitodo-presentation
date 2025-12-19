@@ -87,6 +87,8 @@ class Indexer
      */
     protected static Solr $solr;
 
+    protected static array $processedTitleBreadcrumbs = [];
+
     /**
      * Insert given document into Solr index
      *
@@ -371,6 +373,9 @@ class Indexer
                 $solrDoc->setField('toplevel', $logicalUnit['id'] == $doc->getToplevelId());
                 $solrDoc->setField('title', $metadata['title'][0]);
                 $solrDoc->setField('volume', $metadata['volume'][0] ?? '');
+                // add title breadcrumbs
+                $processedTitleBreadcrumbs[$logicalUnit['id']] = self::buildBreadcrumb($doc->tableOfContents, $logicalUnit['id'], $document->getCurrentDocument()->getToplevelId());
+                $solrDoc->setField('title_breadcrumbs', $processedTitleBreadcrumbs[$logicalUnit['id']]);
                 // verify date formatting
                 if(strtotime($metadata['date'][0])) {
                     $solrDoc->setField('date', self::getFormattedDate($metadata['date'][0]));
@@ -614,6 +619,117 @@ class Indexer
             }
         }
     }
+
+    /*public static function findPathById(array $nodes, $targetId, $path = [])
+    {
+        foreach ($nodes as $node) {
+
+            $currentPath = array_merge($path, [$node['id']]);
+
+            if ($node['id'] == $targetId) {
+                return $currentPath; // found it
+            }
+
+            if (!empty($node['children'])) {
+                $result = self::findPathById($node['children'], $targetId, $currentPath);
+                if ($result) {
+                    return $result;
+                }
+            }
+        }
+
+        return false; // not found
+    }*/
+
+    /*public static function buildBreadcrumb(array $nodes, $targetId, $path = [])
+{
+    foreach ($nodes as $node) {
+
+        $currentPath = array_merge($path, [ self::getNodeTitle($node) ]);
+
+        if ($node['id'] == $targetId) {
+            return implode(' >>> ', $currentPath);   // return breadcrumb string
+        }
+
+        if (!empty($node['children'])) {
+            $result = self::buildBreadcrumb($node['children'], $targetId, $currentPath);
+            if ($result) {
+                return $result;
+            }
+        }
+    }
+
+    return false; // not found
+}*/
+
+public static function findPath(array $nodes, $targetId, $path = [])
+{
+    foreach ($nodes as $node) {
+
+        $currentPath = array_merge($path, [$node]);
+
+        if ($node['id'] == $targetId) {
+            return $currentPath;
+        }
+
+        if (!empty($node['children'])) {
+            $result = self::findPath($node['children'], $targetId, $currentPath);
+            if ($result) return $result;
+        }
+    }
+
+    return false;
+}
+
+
+public static function buildBreadcrumb(array $tree, $targetId, $cutoffId)
+{
+    $path = self::findPath($tree, $targetId);
+
+    if (!$path) return '';
+
+    // find cutoff index
+    $cutoffIndex = array_search($cutoffId, array_column($path, 'id'));
+
+    if ($cutoffIndex !== false) {
+        // slice everything *after* cutoff
+        $path = array_slice($path, $cutoffIndex + 1);
+    }
+
+    // convert to titles
+    // build breadcrumb string manually
+    $titles = [];
+    foreach ($path as $node) {
+        $titles[] = self::getNodeTitle($node);
+    }
+
+    return implode(' → ', $titles);
+}
+
+
+public static function getNodeTitle(array $node): string {
+    // If you want label > orderlabel > volume+year > type
+    if (!empty($node['label'])) {
+        return $node['label'];
+    }
+
+    if (!empty($node['orderlabel'])) {
+        return $node['orderlabel'];
+    }
+
+    if (!empty($node['volume'])) {
+        // If year exists, append it
+        return !empty($node['year']) ? $node['volume'] . ' ' . $node['year'] : $node['volume'];
+    }
+
+    if (!empty($node['type'])) {
+        return $node['type'];
+    }
+
+    // fallback
+    return '';
+}
+
 
     /**
      * Delete document from SOLR by given field and value.

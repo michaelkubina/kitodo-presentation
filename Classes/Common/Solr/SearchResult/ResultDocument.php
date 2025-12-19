@@ -90,6 +90,7 @@ class ResultDocument
      * @var Highlight[] All highlights of search phrase
      */
     private array $highlights = [];
+    private array $title_breadcrumbs = [];
 
     /**
      * @access private
@@ -115,6 +116,7 @@ class ResultDocument
         $this->page = $record[$fields['page']];
         $this->thumbnail = $record[$fields['thumbnail']];
         $this->title = $record[$fields['title']];
+        $this->title_breadcrumbs = $record[$fields['title_breadcrumbs']] ?? [];
         $this->toplevel = $record[$fields['toplevel']] ?? false;
         $this->type = $record[$fields['type']];
 
@@ -235,6 +237,11 @@ class ResultDocument
     public function getPages(): array
     {
         return $this->pages;
+    }
+
+    public function getTitleBreadcrumbs(): array
+    {
+        return $this->title_breadcrumbs;
     }
 
     /**

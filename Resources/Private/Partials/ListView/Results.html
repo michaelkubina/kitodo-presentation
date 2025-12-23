@@ -102,8 +102,12 @@
                                 <f:render partial="ListView/ResultsThumbnailMetadata" arguments="{title: docTitle, thumbnail: result.thumbnail}" />
                                 <dl>
                                     <f:if condition="{result.title}">
-                                        <f:render partial="ListView/ResultsTitleMetadata" arguments="{title: result.title_breadcrumbs}" />
+                                        <f:render partial="ListView/ResultsTitleMetadata" arguments="{title: result.title}" />
                                     </f:if>
+                                    <f:for each="{result.title_breadcrumbs}" as="breadcrumb">
+                                        <f:render partial="ListView/ResultsStructurePathMetadata"
+                                                arguments="{title: breadcrumb}" />
+                                    </f:for>
                                     <f:if condition="{result.structure} != 'page'">
                                         <f:render partial="ListView/ResultsTypeMetadata" arguments="{type: result.structure}" />
                                     </f:if>

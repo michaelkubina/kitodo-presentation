@@ -55,7 +55,7 @@ class TableOfContentsController extends AbstractController
         }
 
         $this->view->assign('viewData', $this->viewData);
-        $this->view->assign('doc', $this->document);
+        $this->view->assign('doc', $this->document->getCurrentDocument());
         return $this->htmlResponse();
     }
 

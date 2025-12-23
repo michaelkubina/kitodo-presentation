@@ -374,7 +374,10 @@ class Indexer
                 $solrDoc->setField('title', $metadata['title'][0]);
                 $solrDoc->setField('volume', $metadata['volume'][0] ?? '');
                 // add title breadcrumbs
-                $processedTitleBreadcrumbs[$logicalUnit['id']] = self::buildBreadcrumb($doc->tableOfContents, $logicalUnit['id'], $document->getCurrentDocument()->getToplevelId());
+                //$processedTitleBreadcrumbs[$logicalUnit['id']] = self::buildBreadcrumb($doc->tableOfContents, $logicalUnit['id'], $document->getCurrentDocument()->getToplevelId());
+                $segments = self::buildBreadcrumbData($doc->tableOfContents, $logicalUnit['id'], $document->getCurrentDocument()->getToplevelId());
+                $processedTitleBreadcrumbs[$logicalUnit['id']] = json_encode($segments, JSON_UNESCAPED_UNICODE);
+
                 $solrDoc->setField('title_breadcrumbs', $processedTitleBreadcrumbs[$logicalUnit['id']]);
                 // verify date formatting
                 if(strtotime($metadata['date'][0])) {
@@ -470,6 +473,14 @@ class Indexer
             $solrDoc->setField('type', $physicalUnit['type']);
             $solrDoc->setField('collection', $doc->metadataArray[$doc->getToplevelId()]['collection']);
             $solrDoc->setField('location', $document->getLocation());
+
+            foreach ($doc->smLinks['p2l'][$physicalUnit['id']] as $logicalId) {
+                // TODO: if logical id in processedTitleBreadcrumbs
+
+                $segments = self::buildBreadcrumbData($doc->tableOfContents, $logicalId, $document->getCurrentDocument()->getToplevelId());
+                $processedTitleBreadcrumbs[$logicalId] = json_encode($segments, JSON_UNESCAPED_UNICODE);
+                $solrDoc->setField('title_breadcrumbs', $processedTitleBreadcrumbs[$logicalId]);
+            }
 
             $solrDoc->setField('fulltext', $fullText);
             if (is_array($doc->metadataArray[$doc->getToplevelId()])) {
@@ -681,8 +692,68 @@ public static function findPath(array $nodes, $targetId, $path = [])
     return false;
 }
 
+public static function buildBreadcrumbData(array $tree, $targetId, $cutoffId)
+{
+    $path = self::findPath($tree, $targetId);
 
-public static function buildBreadcrumb(array $tree, $targetId, $cutoffId)
+    if (!$path) {
+        return [];
+    }
+
+    // find cutoff index
+    $cutoffIndex = array_search($cutoffId, array_column($path, 'id'));
+
+    if ($cutoffIndex !== false) {
+        // slice everything *after* cutoff
+        $path = array_slice($path, $cutoffIndex + 1);
+    }
+
+    $segments = [];
+
+    foreach ($path as $node) {
+        $segments[] = self::buildBreadcrumbSegment($node);
+    }
+
+    return $segments;
+}
+
+public static function buildBreadcrumbSegment(array $node): array
+{
+    if (!empty($node['label'])) {
+        return [
+            'label' => $node['label'],
+        ];
+    }
+
+    if (!empty($node['orderlabel'])) {
+        return [
+            'label' => $node['orderlabel'],
+        ];
+    }
+
+    if (!empty($node['volume'])) {
+        $value = !empty($node['year'])
+            ? $node['volume'] . ' ' . $node['year']
+            : $node['volume'];
+
+        return [
+            'label' => $value,
+        ];
+    }
+
+    if (!empty($node['type'])) {
+        return [
+            'type' => $node['type'],   // translation key
+        ];
+    }
+
+    return ['label' => ''];
+}
+
+
+
+
+/*public static function buildBreadcrumb(array $tree, $targetId, $cutoffId)
 {
     $path = self::findPath($tree, $targetId);
 
@@ -728,7 +799,7 @@ public static function getNodeTitle(array $node): string {
 
     // fallback
     return '';
-}
+}*/
 
 
     /**

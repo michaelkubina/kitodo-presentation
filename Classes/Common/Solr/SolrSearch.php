@@ -561,7 +561,43 @@ class SolrSearch implements \Countable, \Iterator, \ArrayAccess, QueryResultInte
                             $searchResult['thumbnail'] = $doc['thumbnail'];
                             $searchResult['structure'] = $doc['type'];
                             $searchResult['title'] = $doc['title'];
-                            $searchResult['title_breadcrumbs'] = $doc['title_breadcrumbs'][0];
+                            //$searchResult['title_breadcrumbs'] = $doc['title_breadcrumbs'];
+                            // normalize to array
+                            $values = $doc['title_breadcrumbs'] ?? [];
+                            if (!is_array($values)) {
+                                $values = [$values];
+                            }
+
+                            $breadcrumbsStrings = [];
+
+                            foreach ($values as $json) {
+
+                                if (!is_string($json) || $json === '') {
+                                    continue;
+                                }
+
+                                $segments = json_decode($json, true);
+
+                                if ($segments === null && json_last_error() !== JSON_ERROR_NONE) {
+                                    continue; // skip invalid json
+                                }
+
+                                $labels = [];
+
+                                foreach ($segments as $seg) {
+                                    if (isset($seg['type'])) {
+                                        $labels[] = Helper::translate($seg['type'], 'tx_dlf_structures', $this->settings['storagePid']);
+                                    } elseif (!empty($seg['label'])) {
+                                        $labels[] = $seg['label'];
+                                    }
+                                }
+
+                                // implode to display string
+                                $breadcrumbsStrings[] = implode(' → ', $labels);
+                            }
+
+                            // result is array of printable breadcrumb strings
+                            $searchResult['title_breadcrumbs'] = $breadcrumbsStrings;
                             //$searchResult['raw'] = $doc;
                             foreach ($params['listMetadataRecords'] as $indexName => $solrField) {
                                 if (isset($doc['metadata'][$indexName])) {

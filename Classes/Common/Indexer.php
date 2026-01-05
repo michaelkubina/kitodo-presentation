@@ -375,10 +375,18 @@ class Indexer
                 $solrDoc->setField('volume', $metadata['volume'][0] ?? '');
                 // add title breadcrumbs
                 //$processedTitleBreadcrumbs[$logicalUnit['id']] = self::buildBreadcrumb($doc->tableOfContents, $logicalUnit['id'], $document->getCurrentDocument()->getToplevelId());
-                $segments = self::buildBreadcrumbData($doc->tableOfContents, $logicalUnit['id'], $document->getCurrentDocument()->getToplevelId());
-                $processedTitleBreadcrumbs[$logicalUnit['id']] = json_encode($segments, JSON_UNESCAPED_UNICODE);
+                //$segments = self::buildBreadcrumbData($doc->tableOfContents, $logicalUnit['id'], $document->getCurrentDocument()->getToplevelId());
+                //$processedTitleBreadcrumbs[$logicalUnit['id']] = json_encode($segments, JSON_UNESCAPED_UNICODE);
+                self::$processedTitleBreadcrumbs[$logicalUnit['id']] = [
+                    'is_leaf'  => self::isLeafNode($doc->tableOfContents, $logicalUnit['id']),
+                    'segments' => self::buildBreadcrumbData(
+                        $doc->tableOfContents,
+                        $logicalUnit['id'],
+                        $document->getCurrentDocument()->getToplevelId()
+                    ),
+                ];
 
-                $solrDoc->setField('title_breadcrumbs', $processedTitleBreadcrumbs[$logicalUnit['id']]);
+                $solrDoc->setField('title_breadcrumbs', json_encode(self::$processedTitleBreadcrumbs[$logicalUnit['id']]['segments'], JSON_UNESCAPED_UNICODE));
                 // verify date formatting
                 if(strtotime($metadata['date'][0])) {
                     $solrDoc->setField('date', self::getFormattedDate($metadata['date'][0]));
@@ -474,13 +482,21 @@ class Indexer
             $solrDoc->setField('collection', $doc->metadataArray[$doc->getToplevelId()]['collection']);
             $solrDoc->setField('location', $document->getLocation());
 
+            $processedStructPath = [];
             foreach ($doc->smLinks['p2l'][$physicalUnit['id']] as $logicalId) {
-                // TODO: if logical id in processedTitleBreadcrumbs
+                if (
+                    empty(self::$processedTitleBreadcrumbs[$logicalId])
+                    || !self::$processedTitleBreadcrumbs[$logicalId]['is_leaf']
+                ) {
+                    continue; // parent → skip
+                }
 
-                $segments = self::buildBreadcrumbData($doc->tableOfContents, $logicalId, $document->getCurrentDocument()->getToplevelId());
-                $processedTitleBreadcrumbs[$logicalId] = json_encode($segments, JSON_UNESCAPED_UNICODE);
-                $solrDoc->setField('title_breadcrumbs', $processedTitleBreadcrumbs[$logicalId]);
+                $processedStructPath[] = json_encode(
+                    self::$processedTitleBreadcrumbs[$logicalId]['segments'],
+                    JSON_UNESCAPED_UNICODE
+                );
             }
+            $solrDoc->setField('title_breadcrumbs', $processedStructPath);
 
             $solrDoc->setField('fulltext', $fullText);
             if (is_array($doc->metadataArray[$doc->getToplevelId()])) {
@@ -690,6 +706,19 @@ public static function findPath(array $nodes, $targetId, $path = [])
     }
 
     return false;
+}
+
+public static function isLeafNode(array $tree, $targetId): bool
+{
+    $path = self::findPath($tree, $targetId);
+
+    if (!$path) {
+        return false;
+    }
+
+    $node = end($path);
+
+    return empty($node['children']);
 }
 
 public static function buildBreadcrumbData(array $tree, $targetId, $cutoffId)
